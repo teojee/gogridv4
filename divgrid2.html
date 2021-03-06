@@ -1,0 +1,243 @@
+<html>
+<title>Web Assembly Work</title>
+<head>
+    <meta charset="utf-8" />
+    <script src="wasm_exec.js"></script>
+    <link rel="shortcut icon" href="#" />
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(
+            fetch("divgridv4.wasm"),
+            go.importObject
+        ).then((result) => {
+            go.run(result.instance);            
+            // Gv4.divgridInit('divSort').then(console.log("HTML Header Load divSort finished"));    
+        });        
+    </script>
+    <style>
+        div.tablemaster {
+            /*overflow-y: scroll;*/
+            font-size: 0.9rem;
+            display: table;
+            width: auto;
+        }
+
+            div.tablemaster > div:first-child {
+                font-weight: bold;
+                font-size: 1rem;
+                color: darkslategray;
+                background-color: rgba(0, 0, 0, 0.06);
+            }
+
+            div.tablemaster > div {
+                display: table-row;
+                border-bottom: 1px solid #f1f1f1;
+            }
+
+                div.tablemaster > div:hover {
+                    /*font-weight: bold;*/
+                    color: var(--umcdarkgreen);
+                    background-color: var(--grid-row-hover-bg) !important;
+                }
+
+                div.tablemaster > div:nth-child(odd) {
+                    background-color: rgba(0, 0, 0, 0.02);
+                }
+
+                div.tablemaster > div > div {
+                    /*padding: 0.5rem;*/
+                    display: table-cell;
+                    vertical-align: middle;
+                    padding: 0.4rem;
+                    border: 1px solid rgba(0, 0, 0, 0.06);
+                }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <center>
+            <h1>Test WASM</h1>
+            <input type="text" id="filtery" value="" onkeyup="javascript:Gv4.dgFilter('divSort', 'fi=filtery', 'ps=10')"/>
+            <a href="javascript: Gv4.dgInit('divSort')">Init Table</a><br />
+            <a href="javascript: Gv4.dgHello('Test Hello Main')">Test Hello</a><br />            
+            <br />
+            <input type="button" id="btnTest" size="15" value="Hallo" />
+            <br /><br />
+           
+             <br /><br />
+            <div id="divHtml" class="tableMaster"></div>
+        </center>
+    </div>
+    <div id="divSort" class="tableMaster">
+        <div id="header" class="header">
+            <div type="string">Date</div>
+            <div type="int">Amount</div>
+            <div type="int">Name</div>
+        </div>
+        <div id="div5" class="test">
+            <div>FFPPPPOOLLL</div>
+            <div>99</div>
+            <div>45</div>
+        </div>
+        <div id="div2" class="test">
+            <div>GG</div>
+            <div>88</div>
+            <div>56</div>
+        </div>
+        <div id="div7" class="test">
+            <div>AA</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>7</div>
+        </div>
+         <div id="div5" class="test">
+            <div>FFPPPPOOLLL</div>
+            <div>99A</div>
+            <div>1</div>
+        </div>
+        <div id="div2" class="test">
+            <div>12</div>
+            <div>A88</div>
+            <div>2</div>
+        </div>
+        <div id="div7" class="test">
+            <div>14</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+         <div id="div5" class="test">
+            <div>17</div>
+            <div>99</div>
+            <div>13</div>
+        </div>
+        <div id="div2" class="test">
+            <div>18</div>
+            <div>88</div>
+            <div>19</div>
+        </div>
+        <div id="div7" class="test">
+            <div>20</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>62</div>
+        </div>
+        <div id="div5" class="test">
+            <div>FFPPPPOOLLL</div>
+            <div>99</div>
+            <div>12</div>
+        </div>
+        <div id="div2" class="test">
+            <div>GG</div>
+            <div>88</div>
+            <div>44</div>
+        </div>
+        <div id="div7" class="test">
+            <div>AA</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+         <div id="div5" class="test">
+            <div>FFPPPPOOLLL</div>
+            <div>99</div>
+            <div>100</div>
+        </div>
+        <div id="div2" class="test">
+            <div>12</div>
+            <div>88</div>
+            <div>101</div>
+        </div>
+        <div id="div7" class="test">
+            <div>14</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+         <div id="div5" class="test">
+            <div>17</div>
+            <div>99</div>
+            <div>67</div>
+        </div>
+        <div id="div2" class="test">
+            <div>18</div>
+            <div>88</div>
+            <div>23</div>
+        </div>
+        <div id="div7" class="test">
+            <div>20</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+        <div id="div5" class="test">
+            <div>FFPPPPOOLLL</div>
+            <div>99</div>
+            <div>123</div>
+        </div>
+        <div id="div2" class="test">
+            <div>GG</div>
+            <div>88</div>
+            <div>89</div>
+        </div>
+        <div id="div7" class="test">
+            <div>AA</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+         <div id="div5" class="test">
+            <div>FFPPPPOOLLL</div>
+            <div>99</div>
+            <div>78</div>
+        </div>
+        <div id="div2" class="test">
+            <div>12</div>
+            <div>88</div>
+            <div>11</div>
+        </div>
+        <div id="div7" class="test">
+            <div>14</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+         <div id="div5" class="test">
+            <div>17</div>
+            <div>99</div>
+            <div>18</div>
+        </div>
+        <div id="div2" class="test">
+            <div>18</div>
+            <div>88</div>
+            <div>21</div>
+        </div>
+        <div id="div7" class="test">
+            <div>20</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+          <div id="div2" class="test">
+            <div>18</div>
+            <div>88</div>
+            <div>123</div>
+        </div>
+        <div id="div7" class="test">
+            <div>20</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+          <div id="div2" class="test">
+            <div>18</div>
+            <div>88</div>
+            <div>789</div>
+        </div>
+        <div id="div7" class="test">
+            <div>20</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+          <div id="div2" class="test">
+            <div>18</div>
+            <div>88</div>
+            <div>2345</div>
+        </div>
+        <div id="div7" class="test">
+            <div>20</div>
+            <div>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt</div>
+            <div>12</div>
+        </div>
+    </div>
+</body>
